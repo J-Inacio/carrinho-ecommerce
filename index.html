@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Simulador carrinho de compras</title>
+		<script src="main.js" defer></script>
+		<link rel="stylesheet" href="reset.css" />
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<input type="checkbox" id="selectAll" />
+		<label for="selectAll">Todos os produtos</label>
+		<ul id="listProducts">
+			<li id="item">
+				<section class="itemContainer">
+					<input type="checkbox" id="select" class="selectItem" />
+					<img
+						src="https://http2.mlstatic.com/100-caixas-de-papelo-ondulado-20x14x8-e-commerce-pac-sedex-S_2X_620905-MLB82207547480_022025-Y.jpg"
+						alt=""
+					/>
+
+					<label for="select">100 Caixas de Papelão</label>
+					<button id="deleteBtn">Excluir</button>
+
+					<div>
+						<label for="undProducts" >Qtd</label>
+						<input type="number" min="1" max="20" id="undProducts"/>
+					</div>
+					<aside><span>R$</span><span>143.96</span></aside>
+					
+				</section>
+			</li>
+		</ul>
+		<section id="showproducts">
+
+		</section>
+	</body>
+</html>
