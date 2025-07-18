@@ -1,41 +1,82 @@
 {
   "products": [
     {
-        "productID": 1,
-		"productName": "Bobina",
-        "productPrice": 19.99,
-        "productImg": "https://http2.mlstatic.com/D_NQ_NP_997390-MLA79709545651_102024-O.webp",
-        "storeID": 1,
-        "storeName": "JV Escritório"
-	},
+      "id": 1,
+      "productName": "Bobina",
+      "productPrice": 19.99,
+      "productImg": "https://http2.mlstatic.com/D_NQ_NP_997390-MLA79709545651_102024-O.webp",
+      "storeID": 1,
+      "storeName": "JV Escritório"
+    },
     {
-        "productID": 2,
-		"productName": "Celular",
-        "productPrice": 1050.99,
-        "productImg": "https://http2.mlstatic.com/D_NQ_NP_792554-MLA82773468680_032025-O.webp",
-        "storeID": 2,
-        "storeName": "Loja Eletrônicos"
-	},
+      "id": 2,
+      "productName": "Celular",
+      "productPrice": 1050.99,
+      "productImg": "https://http2.mlstatic.com/D_NQ_NP_792554-MLA82773468680_032025-O.webp",
+      "storeID": 2,
+      "storeName": "Loja Eletrônicos"
+    },
     {
-        "productID": 3,
-		"productName": "Fita Adesiva",
-        "productPrice": 9.99,
-        "productImg": "https://http2.mlstatic.com/D_NQ_NP_878855-MLU70632916280_072023-O.webp",
-        "storeID": 1,
-        "storeName": "JV Escritório"
-	},
+      "id": 3,
+      "productName": "Fita Adesiva",
+      "productPrice": 9.99,
+      "productImg": "https://http2.mlstatic.com/D_NQ_NP_878855-MLU70632916280_072023-O.webp",
+      "storeID": 1,
+      "storeName": "JV Escritório"
+    },
     {
-        "productID": 4,
-		"productName": "Caixa de som",
-        "productPrice": 69.99,
-        "productImg": "https://http2.mlstatic.com/D_NQ_NP_633790-MLA81772871630_012025-O.webp",
-        "storeID": 2,
-        "storeName": "Varejo Eletrônicos"
+      "id": 4,
+      "productName": "Caixa de som",
+      "productPrice": 69.99,
+      "productImg": "https://http2.mlstatic.com/D_NQ_NP_633790-MLA81772871630_012025-O.webp",
+      "storeID": 2,
+      "storeName": "Varejo Eletrônicos"
     }
   ],
-  "comments": [
-    { "id": "1", "text": "a comment about post 1", "postId": "1" },
-    { "id": "2", "text": "another comment about post 1", "postId": "1" }
+  "cart": [
+    {
+      "id": 4,
+      "productName": "Caixa de som",
+      "productPrice": 69.99,
+      "productImg": "https://http2.mlstatic.com/D_NQ_NP_633790-MLA81772871630_012025-O.webp",
+      "storeID": 2,
+      "storeName": "Varejo Eletrônicos"
+    },
+    {
+      "id": "e62f",
+      "productId": 1,
+      "qtd": 1,
+      "price": 19.99,
+      "storeID": 1
+    },
+    {
+      "id": "9580",
+      "productId": 1,
+      "qtd": 1,
+      "price": 19.99,
+      "storeID": 1
+    },
+    {
+      "id": "9922",
+      "productId": 1,
+      "qtd": 1,
+      "price": 19.99,
+      "storeID": 1
+    },
+    {
+      "id": "8b96",
+      "productId": 1,
+      "qtd": 1,
+      "price": 19.99,
+      "storeID": 1
+    },
+    {
+      "id": "f05e",
+      "productId": 2,
+      "qtd": 1,
+      "price": 1050.99,
+      "storeID": 2
+    }
   ],
   "profile": {
     "name": "typicode"
