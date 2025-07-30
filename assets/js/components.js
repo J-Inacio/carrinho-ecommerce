@@ -11,6 +11,32 @@ const selectAllCheckbox = document.getElementById("selectAll");
 
 selectAllCheckbox.addEventListener("click", selectAllHandler);
 
+export const renderProductsShowCase = (productsArr) => {
+	productsArr.forEach((product) => {
+		const div = document.createElement("div");
+		div.id = product.id;
+		div.classList = "product";
+		const img = document.createElement("img");
+		img.src = product.productImg;
+		const name = document.createElement("h3");
+		name.textContent = product.productName;
+		const price = document.createElement("p");
+		price.textContent = "R$" + product.productPrice;
+		const storeName = document.createElement("p");
+		storeName.textContent = product.storeName;
+		storeName.style.fontWeight = "bold";
+
+		const addBtn = document.createElement("button");
+		addBtn.textContent = "Adicionar ao carrinho";
+		addBtn.addEventListener("click", () => {
+			addToCartHandler(product);
+			updateTotal();
+		});
+		div.append(img, name, price, storeName, addBtn);
+		showcase.appendChild(div);
+	});
+};
+
 export const renderCartItem = (product) => {
 	const itemSection = document.createElement("section");
 	itemSection.classList = "itemContainer";
@@ -51,7 +77,7 @@ export const renderCartItem = (product) => {
 	const inputQuantity = document.createElement("div")
 	inputQuantity.id = `qtd${product.id}`;
 	const qtdSpan = document.createElement("span")
-	qtdSpan.id = "qtd-value"
+	qtdSpan.id = `qtd-value${product.id}`;
 	qtdSpan.innerText = product.qtd
 	const increaseBtn = document.createElement("button")
 	increaseBtn.id = "increase"
@@ -61,6 +87,30 @@ export const renderCartItem = (product) => {
 	decreaseBtn.innerText = "-"
 
 	increaseBtn.addEventListener('click', () => {
+		const i = cart.indexOf(product);
+		qtdSpan.innerText++
+		console.log(Number(qtdSpan.innerText))
+		cart[i].qtd = Number(qtdSpan.innerText);
+		cart[i].total = Number(qtdSpan.innerText) * cart[i].productPrice;
+		price.innerText = (product.productPrice * product.qtd).toFixed(2);
+		updateTotal();
+		console.log(cart)
+	})
+
+	decreaseBtn.addEventListener('click', () => {
+		const i = cart.indexOf(product);
+		const qtdValue = Number(qtdSpan.innerText)
+		if(qtdValue < 2) {
+			qtdSpan.innerText = 1
+		} else {
+		qtdSpan.innerText--
+		console.log(Number(qtdSpan.innerText))
+		cart[i].qtd = Number(qtdSpan.innerText);
+		cart[i].total = Number(qtdSpan.innerText) * cart[i].productPrice;
+		price.innerText = (product.productPrice * product.qtd).toFixed(2);
+		updateTotal();
+		console.log(cart)
+		}
 		
 	})
 
@@ -75,16 +125,6 @@ export const renderCartItem = (product) => {
 	const price = document.createElement("span");
 	price.id = `price-${product.id}`;
 	price.innerText = product.productPrice;
-
-	inputQuantity.addEventListener("change", (e) => {
-		const i = cart.indexOf(product);
-		const inputValue = e.currentTarget.value;
-		cart[i].qtd = inputValue;
-		cart[i].total = inputValue * cart[i].productPrice;
-		price.innerText = (product.productPrice * product.qtd).toFixed(2);
-		updateTotal();
-	});
-
 	const asidePrice = document.createElement("aside");
 	asidePrice.append(span, price);
 	asidePrice.className = "product-price"
@@ -101,28 +141,4 @@ export const renderCartItem = (product) => {
 	listProducts.appendChild(itemSection);
 };
 
-export const renderProductsShowCase = (productsArr) => {
-	productsArr.forEach((product) => {
-		const div = document.createElement("div");
-		div.id = product.id;
-		div.classList = "product";
-		const img = document.createElement("img");
-		img.src = product.productImg;
-		const name = document.createElement("h3");
-		name.textContent = product.productName;
-		const price = document.createElement("p");
-		price.textContent = "R$" + product.productPrice;
-		const storeName = document.createElement("p");
-		storeName.textContent = product.storeName;
-		storeName.style.fontWeight = "bold";
 
-		const addBtn = document.createElement("button");
-		addBtn.textContent = "Adicionar ao carrinho";
-		addBtn.addEventListener("click", () => {
-			addToCartHandler(product);
-			updateTotal();
-		});
-		div.append(img, name, price, storeName, addBtn);
-		showcase.appendChild(div);
-	});
-};
