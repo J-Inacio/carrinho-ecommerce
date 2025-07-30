@@ -1,4 +1,5 @@
 import { cart } from "../../main.js";
+import { renderCartItem, renderTotal } from "./components.js";
 
 export const findIndex = (id, arr) => {
 	const i = arr.findIndex((product) => product.productID === id);
@@ -9,31 +10,55 @@ export const findIndex = (id, arr) => {
 	}
 };
 
-export const addToCartHandler = async (product) => {
-	// const itemExists = await fetch("http://localhost:3000/cart")
-	const item = {
-		productId: product.id,
-		qtd: 1,
-		price: product.productPrice,
-		storeID: product.storeID,
-	};
-	for (let i = 0; i < cart.length; i++) {
-		if (cart[i].productId === item.productId) {
-			cart[i].qtd++;
-			break
-			
-		} else {
-			cart.push(item)
-			break
-		}
+export const selectAllHandler = (ev) => {
+	const productsCheckboxes = document.querySelectorAll('input.productCheckbox')
+	if(ev.currentTarget.checked) {
+		productsCheckboxes.forEach(checkbox =>  checkbox.checked = true);
+	} else {
+		productsCheckboxes.forEach(checkbox =>  checkbox.checked = false);
 	}
+}
 
-	
+export const addToCartHandler = (product) => {
+	const productsExists = cart.find(
+		(cartProduct) => cartProduct.id === product.id
+	);
+	const i = cart.indexOf(productsExists);
 
-	const newProduct = await fetch("http://localhost:3000/cart", {
-		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(item),
-	});
+	if (productsExists) {
+		cart[i].qtd++;
+		const input = document.getElementById(`qtd${product.id}`);
+		input.value++;
+		input.dispatchEvent(new Event("change"));
+	} else {
+		const item = {
+			id: product.id,
+			productName: product.productName,
+			qtd: 1,
+			productPrice: product.productPrice,
+			productImg: product.productImg,
+			storeID: product.storeID,
+			storeName: product.storeName,
+		};
+		cart.push(item);
+		renderCartItem(item);
+	}
 };
 
+export const removeCartItemHandler = (ev) => {
+	const productId = ev.target.parentElement.id.split("-")[1]
+	const productsExists = cart.find(
+		(cartProduct) => cartProduct.id === productId
+	);
+	const i = cart.indexOf(productsExists);
+	cart.splice(i, 1)
+	ev.target.parentElement.remove()
+	renderTotal();
+};
+
+export const updateTotal = () => {
+	let total = cart.reduce((acc, product) => {
+		return acc + product.productPrice * product.qtd
+	}, 0)
+	return total.toFixed(2)
+}

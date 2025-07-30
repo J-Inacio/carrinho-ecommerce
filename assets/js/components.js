@@ -1,11 +1,17 @@
-import { addToCartHandler} from "./utils.js";
+import {
+	addToCartHandler,
+	removeCartItemHandler,
+	selectAllHandler,
+	updateTotal,
+} from "./utils.js";
 import { cart } from "../../main.js";
 
 const showcase = document.getElementById("showproducts");
+const selectAllCheckbox = document.getElementById("selectAll");
+
+selectAllCheckbox.addEventListener("click", selectAllHandler);
 
 export const renderCartItem = (product) => {
-
-	
 	const itemSection = document.createElement("section");
 	itemSection.classList = "itemContainer";
 	itemSection.id = `product-${product.id}`;
@@ -13,15 +19,18 @@ export const renderCartItem = (product) => {
 	const checkbox = document.createElement("input");
 	checkbox.id = product.id;
 	checkbox.type = "checkbox";
+	checkbox.className = "productCheckbox";
 
 	const productImg = document.createElement("img");
 	productImg.src = product.productImg;
 
 	const productTitle = document.createElement("label");
 	productTitle.innerText = product.productName;
+	productTitle.htmlFor = product.id;
 
 	const deleteBtn = document.createElement("button");
 	deleteBtn.innerText = "Excluir";
+	deleteBtn.addEventListener("click", removeCartItemHandler);
 
 	const amountLabel = document.createElement("label");
 	amountLabel.innerText = "Qtd";
@@ -46,9 +55,21 @@ export const renderCartItem = (product) => {
 	price.innerText = product.productPrice;
 
 	inputQuantity.addEventListener("change", (e) => {
-		const currentPrice = e.target.value * product.productPrice;
+		const productId = document.getElementById(
+			`product-${e.currentTarget.id.slice(3)}`
+		);
+		console.log(productId);
+		const inputValue = e.currentTarget.value;
 
-		price.innerText = currentPrice.toFixed(2);
+		const productsExists = cart.find(
+			(cartProduct) => cartProduct.id === product.id
+		);
+		const i = cart.indexOf(productsExists);
+
+		cart[i].qtd = inputValue;
+		price.innerText = (product.productPrice * product.qtd).toFixed(2);
+			renderTotal();
+		console.log(cart);
 	});
 
 	const asidePrice = document.createElement("aside");
@@ -63,13 +84,10 @@ export const renderCartItem = (product) => {
 		asidePrice
 	);
 
-	
-
 	listProducts.appendChild(itemSection);
-	
 };
 
-export const renderProductsShowCase = async (productsArr) => {
+export const renderProductsShowCase = (productsArr) => {
 	productsArr.forEach((product) => {
 		const div = document.createElement("div");
 		div.id = product.id;
@@ -88,10 +106,15 @@ export const renderProductsShowCase = async (productsArr) => {
 		addBtn.textContent = "Adicionar ao carrinho";
 		addBtn.addEventListener("click", () => {
 			addToCartHandler(product);
-			renderCartItem(product);
-			console.log(cart)
+			renderTotal();
+			console.log(cart);
 		});
 		div.append(img, name, price, storeName, addBtn);
 		showcase.appendChild(div);
 	});
+};
+
+export const renderTotal = () => {
+	const priceSpan = document.getElementById("total-price");
+	priceSpan.innerText = updateTotal().toString();
 };
