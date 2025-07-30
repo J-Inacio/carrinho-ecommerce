@@ -8,7 +8,6 @@ import { cart } from "../../main.js";
 
 const showcase = document.getElementById("showproducts");
 const selectAllCheckbox = document.getElementById("selectAll");
-let totalPriceCart = 0;
 
 selectAllCheckbox.addEventListener("click", selectAllHandler);
 
@@ -23,11 +22,7 @@ export const renderCartItem = (product) => {
 	checkbox.className = "productCheckbox";
 	checkbox.checked = true;
 	checkbox.addEventListener("click", () => {
-		const productsExists = cart.find(
-			(cartProduct) => cartProduct.id === checkbox.id
-		);
-		const i = cart.indexOf(productsExists);
-
+		const i = cart.indexOf(product)
 		if (checkbox.checked) {
 			cart[i].selected = true;
 		} else {
@@ -55,7 +50,6 @@ export const renderCartItem = (product) => {
 	inputQuantity.id = `qtd${product.id}`;
 	inputQuantity.type = "number";
 	inputQuantity.min = "1";
-	inputQuantity.max = "20";
 	inputQuantity.value = 1;
 	inputQuantity.required = "required";
 
@@ -70,21 +64,12 @@ export const renderCartItem = (product) => {
 	price.innerText = product.productPrice;
 
 	inputQuantity.addEventListener("change", (e) => {
-		const productId = document.getElementById(
-			`product-${e.currentTarget.id.slice(3)}`
-		);
+		const i = cart.indexOf(product);
 		const inputValue = e.currentTarget.value;
-
-		const productsExists = cart.find(
-			(cartProduct) => cartProduct.id === product.id
-		);
-		const i = cart.indexOf(productsExists);
-
 		cart[i].qtd = inputValue;
 		cart[i].total = inputValue * cart[i].productPrice;
 		price.innerText = (product.productPrice * product.qtd).toFixed(2);
 		updateTotal();
-
 	});
 
 	const asidePrice = document.createElement("aside");
