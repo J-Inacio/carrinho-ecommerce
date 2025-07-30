@@ -8,6 +8,7 @@ import { cart } from "../../main.js";
 
 const showcase = document.getElementById("showproducts");
 const selectAllCheckbox = document.getElementById("selectAll");
+let totalPriceCart = 0;
 
 selectAllCheckbox.addEventListener("click", selectAllHandler);
 
@@ -20,6 +21,20 @@ export const renderCartItem = (product) => {
 	checkbox.id = product.id;
 	checkbox.type = "checkbox";
 	checkbox.className = "productCheckbox";
+	checkbox.checked = true;
+	checkbox.addEventListener("click", () => {
+		const productsExists = cart.find(
+			(cartProduct) => cartProduct.id === checkbox.id
+		);
+		const i = cart.indexOf(productsExists);
+
+		if (checkbox.checked) {
+			cart[i].selected = true;
+		} else {
+			cart[i].selected = false;
+		}
+		updateTotal();
+	});
 
 	const productImg = document.createElement("img");
 	productImg.src = product.productImg;
@@ -58,7 +73,6 @@ export const renderCartItem = (product) => {
 		const productId = document.getElementById(
 			`product-${e.currentTarget.id.slice(3)}`
 		);
-		console.log(productId);
 		const inputValue = e.currentTarget.value;
 
 		const productsExists = cart.find(
@@ -67,9 +81,10 @@ export const renderCartItem = (product) => {
 		const i = cart.indexOf(productsExists);
 
 		cart[i].qtd = inputValue;
+		cart[i].total = inputValue * cart[i].productPrice;
 		price.innerText = (product.productPrice * product.qtd).toFixed(2);
-			renderTotal();
-		console.log(cart);
+		updateTotal();
+
 	});
 
 	const asidePrice = document.createElement("aside");
@@ -106,15 +121,9 @@ export const renderProductsShowCase = (productsArr) => {
 		addBtn.textContent = "Adicionar ao carrinho";
 		addBtn.addEventListener("click", () => {
 			addToCartHandler(product);
-			renderTotal();
-			console.log(cart);
+			updateTotal();
 		});
 		div.append(img, name, price, storeName, addBtn);
 		showcase.appendChild(div);
 	});
-};
-
-export const renderTotal = () => {
-	const priceSpan = document.getElementById("total-price");
-	priceSpan.innerText = updateTotal().toString();
 };
