@@ -37,6 +37,7 @@ export const renderCartItem = (product) => {
 	const productTitle = document.createElement("label");
 	productTitle.innerText = product.productName;
 	productTitle.htmlFor = product.id;
+	productTitle.className = "product-title"
 
 	const deleteBtn = document.createElement("button");
 	deleteBtn.innerText = "Excluir";
@@ -46,12 +47,24 @@ export const renderCartItem = (product) => {
 	amountLabel.innerText = "Qtd";
 	amountLabel.htmlFor = `qtd${product.id}`;
 
-	const inputQuantity = document.createElement("input");
+
+	const inputQuantity = document.createElement("div")
 	inputQuantity.id = `qtd${product.id}`;
-	inputQuantity.type = "number";
-	inputQuantity.min = "1";
-	inputQuantity.value = 1;
-	inputQuantity.required = "required";
+	const qtdSpan = document.createElement("span")
+	qtdSpan.id = "qtd-value"
+	qtdSpan.innerText = product.qtd
+	const increaseBtn = document.createElement("button")
+	increaseBtn.id = "increase"
+	increaseBtn.innerText = "+"
+	const decreaseBtn = document.createElement("button")
+	decreaseBtn.id = "decrease"
+	decreaseBtn.innerText = "-"
+
+	increaseBtn.addEventListener('click', () => {
+		
+	})
+
+	inputQuantity.append(decreaseBtn,qtdSpan, increaseBtn)
 
 	const amountDiv = document.createElement("div");
 	amountDiv.append(amountLabel, inputQuantity);
@@ -74,6 +87,7 @@ export const renderCartItem = (product) => {
 
 	const asidePrice = document.createElement("aside");
 	asidePrice.append(span, price);
+	asidePrice.className = "product-price"
 
 	itemSection.append(
 		checkbox,
