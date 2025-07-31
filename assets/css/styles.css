@@ -1,148 +1,30 @@
 body {
-    background-color: #EDEDED;
+	background-color: #ededed;
 }
 
 main {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-}
-
-#selectAllContainer {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    border-bottom: 1px solid #c3c3c3;
-    padding-bottom: 1rem;
-}
-
-#selectAllContainer label {
-    height: 100%;
-}
-
-#selectAll {
-    height: 2rem;
-    width: 2rem;
-    cursor: pointer;
-}
-
-#listProducts {
-    padding: 1rem;
-}
-
-.itemContainer {
-    display:grid;
-    grid-template-columns: 1fr 2fr 8fr 1fr;
-    grid-template-rows: 8fr 4fr;
-    align-items: center;
-    gap: .5rem;
-    padding: 1rem 0rem;
-    border-bottom: 1px #c3c3c3 solid;
-}
-
-.productCheckbox{
-    margin-top: 1rem;
-    height: 2rem;
-    width: 2rem;
-    cursor: pointer;
-    align-self: flex-start;
-}
-
-.selectItem {
-    height: 1rem;
-}
-
-.itemContainer label {
-    align-self: flex-start;
-
-}
-
-.itemContainer button, #buyContainer button, .product button {
-    grid-column: 2;
-    border: none;
-    background-color: #000;
-    color: #fff;
-    border-radius: .5rem;
-    cursor: pointer;
-    height: 3rem;
-}
-
-.itemContainer img {
-    border-radius: 0.5rem;
-    width: 100%;
-    height: 5rem;
-    width: 5rem;
-    object-fit: contain;
-    object-position: center;
-    background-color: #fff;
-}
-
-#showproducts {
-    display: flex;
-}
-
-.product {
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    height: 20rem;
-    min-width: 15rem;
-    border: 1px solid #000;
-    border-radius: 1rem;
-    padding: 1rem;
-    margin: 0.5rem;
-}
-
-.product img {
-    align-self: center;
-    justify-self: center;
-    object-fit: cover;
-    width: auto;
-    height: 5rem;
-    border-radius: 1rem;
-}
-
-.product-price {
-    font-weight: 600;
-}
-
-#buyContainer {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    background-color: #fff;
-    height: 20rem;
-    justify-content: space-between;
-    border-radius: .5rem;
-    margin: 1rem;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
 }
 
 
-.total-wrapper {
-    display: flex;
-    border-top: 1px solid #c3c3c3;
-    padding-top: .5rem;
-    justify-content: space-between;
-    font-weight: 700;
-    font-size: 1.25rem;
+.itemContainer button,
+#buyContainer button,
+.product button {
+	grid-column: 2;
+	border: none;
+	background-color: #000;
+	color: #fff;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	height: 3rem;
 }
 
-#buyDetails {
-    color: #4e4e4e;
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    justify-content: space-between;
-    gap: 1rem;
-}
 
-.subtotalPrice {
-}
 
-#buyContainer h2 {
-    font-size: 2rem;
-}
 
-#buyContainer button {
-    width: 100%;
-}
+
+
+
+
+

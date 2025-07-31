@@ -48,7 +48,7 @@ export const renderCartItem = (product) => {
 	checkbox.className = "productCheckbox";
 	checkbox.checked = true;
 	checkbox.addEventListener("click", () => {
-		const i = cart.indexOf(product)
+		const i = cart.indexOf(product);
 		if (checkbox.checked) {
 			cart[i].selected = true;
 		} else {
@@ -63,61 +63,49 @@ export const renderCartItem = (product) => {
 	const productTitle = document.createElement("label");
 	productTitle.innerText = product.productName;
 	productTitle.htmlFor = product.id;
-	productTitle.className = "product-title"
+	productTitle.className = "product-title";
 
 	const deleteBtn = document.createElement("button");
 	deleteBtn.innerText = "Excluir";
 	deleteBtn.addEventListener("click", removeCartItemHandler);
 
-	const amountLabel = document.createElement("label");
-	amountLabel.innerText = "Qtd";
-	amountLabel.htmlFor = `qtd${product.id}`;
-
-
-	const inputQuantity = document.createElement("div")
+	const inputQuantity = document.createElement("div");
+	inputQuantity.className = "qtd-input";
 	inputQuantity.id = `qtd${product.id}`;
-	const qtdSpan = document.createElement("span")
+	const qtdSpan = document.createElement("span");
 	qtdSpan.id = `qtd-value${product.id}`;
-	qtdSpan.innerText = product.qtd
-	const increaseBtn = document.createElement("button")
-	increaseBtn.id = "increase"
-	increaseBtn.innerText = "+"
-	const decreaseBtn = document.createElement("button")
-	decreaseBtn.id = "decrease"
-	decreaseBtn.innerText = "-"
+	qtdSpan.innerText = product.qtd;
+	const increaseBtn = document.createElement("button");
+	increaseBtn.id = "increase";
+	increaseBtn.innerText = "+";
+	const decreaseBtn = document.createElement("button");
+	decreaseBtn.id = "decrease";
+	decreaseBtn.innerText = "-";
 
-	increaseBtn.addEventListener('click', () => {
+	increaseBtn.addEventListener("click", () => {
 		const i = cart.indexOf(product);
-		qtdSpan.innerText++
-		console.log(Number(qtdSpan.innerText))
+		qtdSpan.innerText++;
 		cart[i].qtd = Number(qtdSpan.innerText);
 		cart[i].total = Number(qtdSpan.innerText) * cart[i].productPrice;
 		price.innerText = (product.productPrice * product.qtd).toFixed(2);
 		updateTotal();
-		console.log(cart)
-	})
+	});
 
-	decreaseBtn.addEventListener('click', () => {
+	decreaseBtn.addEventListener("click", () => {
 		const i = cart.indexOf(product);
-		const qtdValue = Number(qtdSpan.innerText)
-		if(qtdValue < 2) {
-			qtdSpan.innerText = 1
+		const qtdValue = Number(qtdSpan.innerText);
+		if (qtdValue < 2) {
+			qtdSpan.innerText = 1;
 		} else {
-		qtdSpan.innerText--
-		console.log(Number(qtdSpan.innerText))
-		cart[i].qtd = Number(qtdSpan.innerText);
-		cart[i].total = Number(qtdSpan.innerText) * cart[i].productPrice;
-		price.innerText = (product.productPrice * product.qtd).toFixed(2);
-		updateTotal();
-		console.log(cart)
+			qtdSpan.innerText--;
+			cart[i].qtd = Number(qtdSpan.innerText);
+			cart[i].total = Number(qtdSpan.innerText) * cart[i].productPrice;
+			price.innerText = (product.productPrice * product.qtd).toFixed(2);
+			updateTotal();
 		}
-		
-	})
+	});
 
-	inputQuantity.append(decreaseBtn,qtdSpan, increaseBtn)
-
-	const amountDiv = document.createElement("div");
-	amountDiv.append(amountLabel, inputQuantity);
+	inputQuantity.append(decreaseBtn, qtdSpan, increaseBtn);
 
 	const span = document.createElement("span");
 	span.innerText = "R$";
@@ -127,18 +115,16 @@ export const renderCartItem = (product) => {
 	price.innerText = product.productPrice;
 	const asidePrice = document.createElement("aside");
 	asidePrice.append(span, price);
-	asidePrice.className = "product-price"
+	asidePrice.className = "product-price";
 
 	itemSection.append(
 		checkbox,
 		productImg,
 		productTitle,
 		deleteBtn,
-		amountDiv,
+		inputQuantity,
 		asidePrice
 	);
 
 	listProducts.appendChild(itemSection);
 };
-
-

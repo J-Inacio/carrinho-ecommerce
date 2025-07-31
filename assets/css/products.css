@@ -1,0 +1,26 @@
+#showproducts {
+	display: flex;
+}
+
+.product {
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	height: 20rem;
+	min-width: 15rem;
+	border: 1px solid #000;
+	border-radius: 1rem;
+	padding: 1rem;
+	margin: 0.5rem;
+}
+
+.product img {
+	align-self: center;
+	justify-self: center;
+	object-fit: cover;
+	width: auto;
+	height: 5rem;
+	border-radius: 1rem;
+}

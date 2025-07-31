@@ -16,14 +16,12 @@ export const selectAllHandler = (ev) => {
 			checkbox.checked = true;
 			const i = getProductInArray(checkbox.id);
 			cart[i].selected = true;
-			console.log(cart);
 		});
 	} else {
 		productsCheckboxes.forEach((checkbox) => {
 			checkbox.checked = false;
 			const i = getProductInArray(checkbox.id);
 			cart[i].selected = false;
-			console.log(cart);
 		});
 	}
 	updateTotal();
@@ -39,11 +37,12 @@ export const addToCartHandler = (product) => {
 		const input = document.getElementById(`qtd-value${product.id}`);
 		const productTotalPrice = document.getElementById(`price-${product.id}`);
 		input.innerText++;
-		cart[i].qtd =  Number(input.innerText)
-		cart[i].total =  Number(input.innerText) * cart[i].productPrice;
-		productTotalPrice.innerText = (cart[i].productPrice * cart[i].qtd).toFixed(2);
+		cart[i].qtd = Number(input.innerText);
+		cart[i].total = Number(input.innerText) * cart[i].productPrice;
+		productTotalPrice.innerText = (cart[i].productPrice * cart[i].qtd).toFixed(
+			2
+		);
 		updateTotal();
-		console.log(cart);
 	} else {
 		const item = {
 			id: product.id,
