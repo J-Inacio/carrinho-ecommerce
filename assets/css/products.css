@@ -1,5 +1,7 @@
 #showproducts {
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	place-items: center;
 }
 
 .product {
@@ -9,7 +11,7 @@
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 	height: 20rem;
-	min-width: 15rem;
+	width: 15rem;
 	border: 1px solid #000;
 	border-radius: 1rem;
 	padding: 1rem;
@@ -19,7 +21,7 @@
 .product img {
 	align-self: center;
 	justify-self: center;
-	object-fit: cover;
+	object-fit: contain;
 	width: auto;
 	height: 5rem;
 	border-radius: 1rem;

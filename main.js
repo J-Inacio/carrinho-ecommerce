@@ -40,6 +40,24 @@ let products = [
 		storeID: 2,
 		storeName: "Varejo Eletrônicos",
 	},
+	{
+		id: "5",
+		productName: "Furadeira Parafusadeira",
+		productPrice: 178.9,
+		productImg:
+			"https://http2.mlstatic.com/D_NQ_NP_901610-MLU77335319929_062024-O.webp",
+		storeID: 2,
+		storeName: "Varejo Ferramentas",
+	},
+	{
+		id: "6",
+		productName: "Spot Led Triplo",
+		productPrice: 66.9,
+		productImg:
+			"https://http2.mlstatic.com/D_NQ_NP_908864-MLB77275587370_072024-O-spot-led-triplo-articulavel-linear-ambiente-interno-casa-led.webp",
+		storeID: 2,
+		storeName: "Varejo Ferramentas",
+	},
 ];
 
 const main = () => {

@@ -1,5 +1,7 @@
 #listProducts {
 	padding: 1rem;
+	grid-row: 2;
+	grid-column: 1;
 }
 
 #selectAllContainer {
@@ -7,7 +9,8 @@
 	align-items: center;
 	gap: 0.5rem;
 	border-bottom: 1px solid #c3c3c3;
-	padding-bottom: 1rem;
+	padding: 0.5rem;
+	align-self: center;
 }
 
 #selectAllContainer label {
@@ -83,7 +86,6 @@
 	text-align: center;
 }
 
-
 #buyContainer {
 	display: flex;
 	flex-direction: column;
@@ -92,7 +94,9 @@
 	height: 20rem;
 	justify-content: space-between;
 	border-radius: 0.5rem;
-	margin: 1rem;
+	margin: 0rem 1rem;
+	grid-row: 2;
+	grid-column: 2;
 }
 
 #buyDetails {
